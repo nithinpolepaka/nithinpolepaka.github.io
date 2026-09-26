@@ -16,6 +16,9 @@ const nextConfig = withBundleAnalyzer({
       : undefined,
   basePath,
   assetPrefix: basePath,
+  env: {
+    GITHUB_PAGES: isGithubPages ? "true" : "",
+  },
   reactStrictMode: true,
   pageExtensions: ["ts", "tsx", "js"],
   eslint: {

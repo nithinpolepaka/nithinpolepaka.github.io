@@ -1,35 +1,69 @@
 import { AnimatePresence, Variants, motion } from "framer-motion";
 
+/**
+ * "NE" monogram for Nithin Emmanuel.
+ *
+ * Drawn as a rounded accent tile with stroked letterforms rather than a fixed
+ * hex, so it inherits the active light/dark theme and stays legible when the
+ * browser scales it down to favicon size.
+ */
 export default function AnimatedLogo() {
-  const iconVariant: Variants = {
-    hidden: {
-      pathLength: 0,
-      fill: "rgba(0, 0, 0, 0)",
-    },
-    visible: {
-      pathLength: 1,
-      // Set fill as per your theme
-      fill: "#1f8d93",
-    },
+  const fade: Variants = {
+    hidden: { opacity: 0, scale: 0.85 },
+    visible: { opacity: 1, scale: 1 },
+  };
+
+  const draw: Variants = {
+    hidden: { pathLength: 0 },
+    visible: { pathLength: 1 },
   };
 
   return (
     <AnimatePresence>
       <motion.svg
-        viewBox="0 0 450 450"
+        viewBox="0 0 64 64"
         xmlns="http://www.w3.org/2000/svg"
-        className="h-full w-full fill-accent stroke-accent"
+        className="h-full w-full"
+        role="img"
+        aria-label="Nithin Emmanuel"
       >
-        <motion.path
-          d="M321.955 420L179.465 127.143L224.998 36.1755L416.91 420H321.955ZM204.867 263.253L128.055 420H33.0897L158.769 168.608L204.867 263.253Z"
-          strokeWidth="15"
-          variants={iconVariant}
+        <motion.rect
+          x="2"
+          y="2"
+          width="60"
+          height="60"
+          rx="18"
+          className="fill-accent"
+          variants={fade}
           initial="hidden"
           animate="visible"
-          transition={{
-            default: { duration: 3, ease: "easeInOut" },
-            fill: { duration: 3, ease: [1, 0, 0.8, 1] },
-          }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+        />
+
+        <motion.path
+          d="M16 46V18l16 28V18"
+          fill="none"
+          strokeWidth="4.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="stroke-background"
+          variants={draw}
+          initial="hidden"
+          animate="visible"
+          transition={{ duration: 0.7, ease: "easeInOut", delay: 0.2 }}
+        />
+
+        <motion.path
+          d="M50 18H40v28h10M40 32h8"
+          fill="none"
+          strokeWidth="4.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="stroke-background"
+          variants={draw}
+          initial="hidden"
+          animate="visible"
+          transition={{ duration: 0.7, ease: "easeInOut", delay: 0.45 }}
         />
       </motion.svg>
     </AnimatePresence>

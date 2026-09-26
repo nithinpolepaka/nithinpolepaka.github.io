@@ -35,10 +35,10 @@ export default function Navbar(props: NavbarProps) {
       <div className="mx-auto flex items-center justify-between lg:max-w-7xl">
         <Link
           href="/"
-          className="drop-shadow-teralight flex items-center justify-center"
+          className="flex items-center justify-center"
           aria-label="Return to home page"
         >
-          <div className="relative h-12 w-12 sm:h-14 sm:w-14">
+          <div className="relative h-12 w-12 transition-transform duration-200 hover:scale-105 sm:h-14 sm:w-14">
             <AnimatedLogo />
           </div>
         </Link>

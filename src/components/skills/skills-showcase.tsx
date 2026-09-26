@@ -1,9 +1,8 @@
-import { AnimatePresence } from "framer-motion";
-
 import SkillPill, {
   type SkillPillProps,
 } from "@/components/skills/skills-pill";
-import FadeRight from "@/animation/fade-right";
+import FadeRight from "@/animation/fade-up";
+
 import { useScreenBreakpoint } from "@/hooks/useScreenBreakpoint";
 import { useDebounceValue } from "@/hooks/useDebounceValue";
 
@@ -17,34 +16,52 @@ export interface SkillsShowcaseProps {
 export default function SkillsShowcase({ skills }: SkillsShowcaseProps) {
   const isMobile = useScreenBreakpoint(640);
   const isMobileDebonced = useDebounceValue(isMobile, 600);
+
   return (
-    <section className="overflow-hidden px-6 py-32 sm:px-14 md:px-20">
-      <div className="relative mx-auto max-w-7xl">
-        <h2 className="text-xl font-semibold text-accent sm:text-4xl">
-          Skills
-        </h2>
-        {skills.map((section) => (
-          <AnimatePresence key={section.sectionName}>
-            <div className="mt-4">
-              <span className="text-xs font-semibold text-foreground sm:text-sm">
-                {section.sectionName}
-              </span>
-              <div className="mt-2 flex flex-wrap gap-4 text-xl text-accent-foreground">
-                {section.skills.map((pill, index) => (
-                  <FadeRight
-                    key={`lang-${index}`}
-                    duration={0.4}
-                    delay={0.1 + index * 0.1}
-                    whileInView={!isMobileDebonced}
-                    className="-z-20"
-                  >
-                    <SkillPill {...pill} />
-                  </FadeRight>
-                ))}
+    <section className="px-6 py-24 sm:px-14 md:px-20 md:py-32">
+      <div className="mx-auto max-w-7xl">
+        <div>
+          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+            Toolkit
+          </span>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+            Skills
+          </h2>
+          <p className="mt-3 max-w-2xl text-base font-medium text-muted-foreground">
+            The stack I reach for most when building retrieval pipelines,
+            backend APIs and data layers.
+          </p>
+        </div>
+
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {skills.map((section) => (
+            <div
+              key={section.sectionName}
+              className="flex flex-col rounded-2xl border border-border bg-white p-6 transition-shadow duration-200 hover:shadow-lg hover:shadow-accent/5 dark:bg-zinc-800/40"
+            >
+              <div className="flex items-center gap-3">
+                <span className="h-px w-6 shrink-0 bg-accent" />
+                <h3 className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+                  {section.sectionName}
+                </h3>
               </div>
+              <ul className="mt-5 flex flex-wrap gap-2">
+                {section.skills.map((pill, index) => (
+                  <li key={pill.name}>
+                    <FadeRight
+                      duration={0.4}
+                      delay={0.05 * index}
+                      whileInView={!isMobileDebonced}
+                      className="-z-10 block"
+                    >
+                      <SkillPill {...pill} />
+                    </FadeRight>
+                  </li>
+                ))}
+              </ul>
             </div>
-          </AnimatePresence>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );

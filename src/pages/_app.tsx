@@ -21,7 +21,7 @@ export default function App({ Component, pageProps }: AppProps) {
           </AnimatePresence>
         </MainLayout>
       </ThemeProvider>
-      <Analytics />
+      {process.env.GITHUB_PAGES !== "true" && <Analytics />}
     </>
   );
 }

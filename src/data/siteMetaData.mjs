@@ -6,6 +6,7 @@ export const siteMetadata = {
   language: "en-us",
   theme: "light",
   siteName: "nithinpolepaka.github.io",
+  location: "Hyderabad, India",
   siteUrl: "https://nithinpolepaka.github.io",
   siteRepo: "https://github.com/nithinpolepaka/nithinpolepaka.github.io",
   siteLogo: "/favicon.ico",
