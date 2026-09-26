@@ -1,7 +1,7 @@
 import SkillPill, {
   type SkillPillProps,
 } from "@/components/skills/skills-pill";
-import FadeRight from "@/animation/fade-up";
+import FadeRight from "@/animation/fade-right";
 
 import { useScreenBreakpoint } from "@/hooks/useScreenBreakpoint";
 import { useDebounceValue } from "@/hooks/useDebounceValue";
